@@ -13,7 +13,14 @@ const getAllBicyclesFromDb = () => {
   return result;
 };
 
+// 3. Get a Specific Bicycle
+const getASpecificBicycle = (id: any) => {
+  const result = bicycleModel.findById(id);
+  return result;
+};
+
 export const bicycleServices = {
   createBicycleIntoDb,
   getAllBicyclesFromDb,
+  getASpecificBicycle,
 };
