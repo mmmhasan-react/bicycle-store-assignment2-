@@ -4,6 +4,7 @@ import { bicycleControllers } from "./bicycle.contoller";
 
 const router = express.Router();
 
-router.post("/createBicycle", bicycleControllers.createBicycle);
+router.post("/products", bicycleControllers.createBicycle);
+router.get("/products", bicycleControllers.getBicyclesFromDb);
 
 export const bicyclerouter = router;

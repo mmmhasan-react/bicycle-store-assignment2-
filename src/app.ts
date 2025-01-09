@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 //api
-app.use("/api/bicycles", bicyclerouter);
+app.use("/api", bicyclerouter);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
