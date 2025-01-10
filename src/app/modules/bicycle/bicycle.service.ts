@@ -26,10 +26,16 @@ const updateABicycle = (id: any, bicycledata: Bicycle) => {
   });
   return result;
 };
+// 5. Delete a Bicycle
+const deleteABicycle = (id: any) => {
+  const result = bicycleModel.findByIdAndDelete(id);
+  return result;
+};
 
 export const bicycleServices = {
   createBicycleIntoDb,
   getAllBicyclesFromDb,
   getASpecificBicycle,
   updateABicycle,
+  deleteABicycle,
 };

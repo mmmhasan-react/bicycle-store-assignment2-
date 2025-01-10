@@ -3,7 +3,7 @@ import { bicycleModel } from "./bicycle.schema";
 import { bicycleServices } from "./bicycle.service";
 import mongoose, { isValidObjectId, ObjectId } from "mongoose";
 
-//create bicycles
+//1. Create a Bicycle
 const createBicycle = async (req: Request, res: Response) => {
   const bicycleData = req.body.bicycles;
   console.log("i am bicycles", bicycleData);
@@ -16,7 +16,7 @@ const createBicycle = async (req: Request, res: Response) => {
   });
 };
 
-//get all bicycles from db
+//2. Get All Bicycles
 const getBicyclesFromDb = async (req: Request, res: Response) => {
   const result = await bicycleServices.getAllBicyclesFromDb();
 
@@ -60,9 +60,26 @@ const updateABicycleintoDB = async (req: Request, res: Response) => {
   });
 };
 
+//5. Delete a Bicycle
+const deleteABicyclefromDb = async (req: Request, res: Response) => {
+  const id = req.params.productId;
+  const body = req.body;
+
+  const result = await bicycleServices.deleteABicycle({
+    _id: new mongoose.Types.ObjectId(id),
+  });
+
+  res.status(200).json({
+    message: "Bicycle deleted successfully",
+    status: true,
+    data: {},
+  });
+};
+
 export const bicycleControllers = {
   createBicycle,
   getBicyclesFromDb,
   getASpecificBicycleFromDb,
   updateABicycleintoDB,
+  deleteABicyclefromDb,
 };
