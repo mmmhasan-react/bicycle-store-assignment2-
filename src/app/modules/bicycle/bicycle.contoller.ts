@@ -43,8 +43,26 @@ const getASpecificBicycleFromDb = async (req: Request, res: Response) => {
   });
 };
 
+// 4. Update a Bicycle into db
+const updateABicycleintoDB = async (req: Request, res: Response) => {
+  const id = req.params.productId;
+  const body = req.body;
+
+  const result = await bicycleServices.updateABicycle(
+    { _id: new mongoose.Types.ObjectId(id) },
+    body
+  );
+
+  res.status(200).json({
+    message: "Bicycles data updated successfully",
+    status: true,
+    data: result,
+  });
+};
+
 export const bicycleControllers = {
   createBicycle,
   getBicyclesFromDb,
   getASpecificBicycleFromDb,
+  updateABicycleintoDB,
 };

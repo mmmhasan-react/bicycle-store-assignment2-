@@ -10,5 +10,5 @@ router.get(
   "/products/:productId",
   bicycleControllers.getASpecificBicycleFromDb
 );
-
+router.put("/products/:productId", bicycleControllers.updateABicycleintoDB);
 export const bicyclerouter = router;

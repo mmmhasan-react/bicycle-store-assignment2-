@@ -1,13 +1,13 @@
 import { Bicycle } from "./bicycle.interface";
 import { bicycleModel } from "./bicycle.schema";
 
-//create a bicycles
+//1. Create a Bicycle
 const createBicycleIntoDb = (bicycle: Bicycle) => {
   const result = bicycleModel.create(bicycle);
   return result;
 };
 
-//get all bicycles
+//2.Get All Bicycles
 const getAllBicyclesFromDb = () => {
   const result = bicycleModel.find({});
   return result;
@@ -19,8 +19,17 @@ const getASpecificBicycle = (id: any) => {
   return result;
 };
 
+//4. Update a Bicycle
+const updateABicycle = (id: any, bicycledata: Bicycle) => {
+  const result = bicycleModel.findOneAndUpdate(id, bicycledata, {
+    new: true,
+  });
+  return result;
+};
+
 export const bicycleServices = {
   createBicycleIntoDb,
   getAllBicyclesFromDb,
   getASpecificBicycle,
+  updateABicycle,
 };
