@@ -18,13 +18,12 @@ const revenueOfAllOrders = async (req: Request, res: Response) => {
   const body = req.body;
   const result = await orderServices.calculateRevenue(body);
   console.log(result);
-  // const total_revenue = price;
 
-  // res.status(200).json({
-  //   message: "Revenue calculated successfully",
-  //   status: true,
-  //   data: result.total_revenue,
-  // });
+  res.status(200).json({
+    message: "Revenue calculated successfully",
+    status: true,
+    data: result,
+  });
 };
 export const orderControllers = {
   createOrderIntoDb,

@@ -8,8 +8,21 @@ const createOrder = async (orderData: Orders) => {
 };
 
 //calculated revinue
+// const calculateRevenue = async (orderData: Orders) => {
+//   const result = await ordersModel.find(orderData);
+//   return result;
+// };
+
+// calculated revinue
 const calculateRevenue = async (orderData: Orders) => {
-  const result = await ordersModel.find(orderData);
+  const result = await ordersModel.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalSaleAmount: { $sum: { $multiply: ["$totalPrice", "$quantity"] } },
+      },
+    },
+  ]);
   return result;
 };
 
