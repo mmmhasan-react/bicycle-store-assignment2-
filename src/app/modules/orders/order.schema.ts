@@ -9,7 +9,7 @@ const ordersSchema = new Schema<Orders>(
     },
     product: {
       type: Schema.Types.ObjectId,
-      ref: "bicycleModel",
+      // ref: "bicycleModel",
     },
     quantity: {
       type: Number,
