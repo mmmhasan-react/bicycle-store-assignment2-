@@ -1,12 +1,11 @@
-import { Aggregate } from "mongoose";
 import { Orders } from "./order.interface";
 import { ordersModel } from "./order.schema";
-import { PipelineStage } from "mongoose";
 import { bicycleModel } from "../bicycle/bicycle.schema";
 // create orders
 const createOrder = async (orderData: Orders) => {
   const bicycle = await bicycleModel.findById(orderData.product);
-  if (!bicycle) {
+
+  if (bicycle === null) {
     throw new Error("Product not found");
   }
   if (bicycle.quantity < orderData.quantity) {
@@ -18,7 +17,12 @@ const createOrder = async (orderData: Orders) => {
     bicycle.inStock = false;
   }
 
-  await bicycle.save();
+  // await bicycle.save();
+  try {
+    await bicycle.save();
+  } catch (error: any) {
+    throw new Error("Failed to update bicycle stock: " + error.message);
+  }
 
   //create new bicycle
   const newOreder = new ordersModel(orderData);
